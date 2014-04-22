@@ -64,6 +64,34 @@ public class CoberturaSensor implements Sensor, CoverageExtension {
     parseReport(report, context);
   }
 
+  public void analyseForDuplication(Project project, SensorContext context) {
+    String path = settings.getString(CoberturaPlugin.COBERTURA_REPORT_PATH_PROPERTY);
+    if (StringUtils.isNotEmpty(path)) {
+      // wasn't configured - skip
+      return;
+    }
+    File report = pathResolver.relativeFile(moduleFileSystem.baseDir(), path);
+    if (!report.exists() || !report.isFile()) {
+      LoggerFactory.getLogger(getClass()).warn("Cobertura report not found at {}", report);
+      return;
+    }
+    parseReport(report, context);
+  }
+
+  public void analyseForDuplication2(Project project, SensorContext context) {
+    String path = settings.getString(CoberturaPlugin.COBERTURA_REPORT_PATH_PROPERTY);
+    if (StringUtils.isNotEmpty(path)) {
+      // wasn't configured - skip
+      return;
+    }
+    File report = pathResolver.relativeFile(moduleFileSystem.baseDir(), path);
+    if (!report.exists() || !report.isFile()) {
+      LoggerFactory.getLogger(getClass()).warn("Cobertura report not found at {}", report);
+      return;
+    }
+    parseReport(report, context);
+  }
+
   protected void parseReport(File xmlFile, SensorContext context) {
     LoggerFactory.getLogger(CoberturaSensor.class).info("parsing {}", xmlFile);
     CoberturaReportParser.parseReport(xmlFile, context, javaResourceLocator);
