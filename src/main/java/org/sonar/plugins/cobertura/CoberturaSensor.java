@@ -46,6 +46,10 @@ public class CoberturaSensor implements Sensor, CoverageExtension {
     this.javaResourceLocator = javaResourceLocator;
   }
 
+  public void dothis() {
+
+  }
+
   public boolean shouldExecuteOnProject(Project project) {
     return StringUtils.isNotEmpty(settings.getString(CoberturaPlugin.COBERTURA_REPORT_PATH_PROPERTY));
   }
