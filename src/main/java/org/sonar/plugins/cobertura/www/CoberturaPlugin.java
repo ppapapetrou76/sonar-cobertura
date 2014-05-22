@@ -45,4 +45,7 @@ public final class CoberturaPlugin extends SonarPlugin {
         CoberturaSensor.class);
   }
 
+    public List dothis() {
+        return null;
+    }
 }
